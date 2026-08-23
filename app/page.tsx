@@ -28,7 +28,7 @@ const content = {
     caseLabel: "Case study", featured: "Featured",
     madinahTitle: "Madinah Operations Intelligence", madinahDesc: "I designed and built this end-to-end BI and applied AI case study, transforming 30,000 privacy-safe synthetic service reports into operational visibility and responsible predictive insight.",
     madinahAI: "Applied AI: I built and evaluated predictive models using Logistic Regression and AdaBoost, then selected a review threshold designed to support—not replace—human decision-making.",
-    madinahStats: [["30K", "synthetic reports"], ["4", "dashboard pages"], ["68.8%", "ROC-AUC"]],
+    madinahStats: [["30K", "synthetic reports"], ["4", "dashboard pages"], ["69.3%", "Test ROC-AUC"]],
     madinahTags: ["Power BI", "Power Query", "DAX", "Python", "scikit-learn"],
     madinahNote: "Inspired by internship experience. This is an independent portfolio project using synthetic data—not an official municipal system.",
     github: "Explore on GitHub", live: "Open live project",
