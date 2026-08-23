@@ -20,13 +20,13 @@ export const metadata: Metadata = {
     title: "Yomna Alhejaili | Data, BI & Applied AI Portfolio",
     description: "Selected work in data analytics, business intelligence, applied AI, and operations.",
     type: "website",
-    images: [{ url: "/portfolio/og.png", width: 1536, height: 904, alt: "Yomna Alhejaili — Data, BI, Applied AI and Operations" }],
+    images: [{ url: "https://youmnaeidh.github.io/portfolio/og.png", width: 1536, height: 904, alt: "Yomna Alhejaili — Data, BI, Applied AI and Operations" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Yomna Alhejaili | Data, BI & Applied AI Portfolio",
     description: "Selected work in data analytics, business intelligence, applied AI, and operations.",
-    images: ["/portfolio/og.png"],
+    images: ["https://youmnaeidh.github.io/portfolio/og.png"],
   },
   icons: {
     icon: "/favicon.svg",
