@@ -33,9 +33,8 @@ portfolio/
 │   ├── globals.css
 │   ├── layout.tsx
 │   └── page.tsx
-├── public/
-│   └── og.png
 ├── index.html
+├── og.png
 ├── package.json
 ├── vite.config.ts
 ├── next.config.ts
