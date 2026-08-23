@@ -24,7 +24,9 @@ I am targeting entry-level opportunities in:
 
 An end-to-end Power BI and predictive analytics case study using **30,000 privacy-safe synthetic service reports**.
 
-**Tools:** Power BI, Power Query, DAX, Python, pandas, and NumPy.
+**Tools:** Power BI, Power Query, DAX, Python, pandas, NumPy, and scikit-learn.
+
+**Final test performance:** 69.3% ROC-AUC and 76.6% recall using a time-based test split.
 
 [Explore the case study](https://github.com/youmnaeidh/Madinah-Operations-Intelligence)
 
