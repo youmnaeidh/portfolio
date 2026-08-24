@@ -77,7 +77,7 @@ export default function Home() {
         <h1>{t.name}</h1>
         <div className="hero-copy">
           <p className="lead">{t.lead}</p><p className="intro">{t.intro}</p>
-          <div className="actions"><a className="button primary" href="#work">{t.workCta}<span>↘</span></a><a className="button cv-button" href="https://yomna-alhejaili.youmnaeidh.chatgpt.site/Yomna-Alhejaili-CV.pdf" download>Download CV <span>↓</span></a></div>
+          <div className="actions"><a className="button primary" href="#work">{t.workCta}<span>↘</span></a><a className="button cv-button" href="/portfolio/Yomna-Alhejaili-CV.pdf" download>Download CV <span>↓</span></a></div>
         </div>
       </section>
 
@@ -132,7 +132,7 @@ export default function Home() {
 
       <footer className="contact" id="contact">
         <p className="section-kicker">{t.contactKicker}</p><div className="contact-main"><div><h2>{t.contactTitle}</h2><p>{t.contactBody}</p></div>
-          <div className="contact-links"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=youmnaeidh@gmail.com&su=Portfolio%20Inquiry" target="_blank" rel="noreferrer">{t.email}<Arrow /></a><a href="https://www.linkedin.com/in/yomna-alhejaili-0b3991216" target="_blank" rel="noreferrer">{t.linkedin}<Arrow /></a><a href="https://yomna-alhejaili.youmnaeidh.chatgpt.site/Yomna-Alhejaili-CV.pdf" download>Download CV <span>↓</span></a><span>{t.location}</span></div>
+          <div className="contact-links"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=youmnaeidh@gmail.com&su=Portfolio%20Inquiry" target="_blank" rel="noreferrer">{t.email}<Arrow /></a><a href="https://www.linkedin.com/in/yomna-alhejaili-0b3991216" target="_blank" rel="noreferrer">{t.linkedin}<Arrow /></a><a href="/portfolio/Yomna-Alhejaili-CV.pdf" download>Download CV <span>↓</span></a><span>{t.location}</span></div>
         </div><div className="footer-line"><span>© {new Date().getFullYear()} {t.name}</span><span>{t.footer}</span><a href="#top">↑</a></div>
       </footer>
     </main>
