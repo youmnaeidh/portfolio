@@ -30,11 +30,11 @@ An end-to-end Power BI and predictive analytics case study using **30,000 privac
 
 [Explore the case study](https://github.com/youmnaeidh/Madinah-Operations-Intelligence)
 
-### EventBoard
+### EventBoard v2
 
-An events platform for Madinah with behavioral tracking, transparent recommendation logic, organizer KPIs, funnel analysis, and demand-gap reporting.
+A full-stack Arabic events demo for Madinah with accounts, database-backed demo bookings, favorites, organizer analytics, hybrid recommendations, Arabic search, and synthetic-data registration forecasts.
 
-**Tools:** HTML5, CSS3, JavaScript, browser storage, and CSV data.
+**Tools:** React, TypeScript, Node/Express, PostgreSQL, Python/FastAPI, and scikit-learn. The frontend uses GitHub Pages; API and AI run on Render Free, with Neon Free PostgreSQL.
 
 [Open the live project](https://youmnaeidh.github.io/EventBoard/) · [View the repository](https://github.com/youmnaeidh/EventBoard)
 
@@ -86,7 +86,7 @@ npm test
 - Portfolio case studies clearly distinguish synthetic data from real operational experience.
 - Madinah Operations Intelligence is an independent prototype, not an official municipal product.
 - Predictive outputs are presented as decision support and require human review.
-- EventBoard recommendations are rule-based and are not presented as machine learning.
+- EventBoard v2 combines transparent recommendation methods and a forecasting model trained on synthetic data. All bookings are demonstrations; model metrics do not establish real-world accuracy.
 
 ## Contact
 
