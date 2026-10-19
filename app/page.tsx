@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const content = {
   en: {
@@ -53,6 +53,76 @@ const content = {
 };
 
 function Arrow() { return <span aria-hidden="true">↗</span>; }
+
+
+const eventSlides = [
+  {
+    "title": "Discover Madinah",
+    "alt": "EventBoard home and event search",
+    "src": "https://raw.githubusercontent.com/youmnaeidh/EventBoard/main/docs/screenshots/home-desktop.png",
+    "position": "0%"
+  },
+  {
+    "title": "Events tonight",
+    "alt": "EventBoard event listings with dates and categories",
+    "src": "https://raw.githubusercontent.com/youmnaeidh/EventBoard/main/docs/screenshots/home-desktop.png",
+    "position": "15%"
+  },
+  {
+    "title": "Personalized discovery",
+    "alt": "EventBoard recommended events",
+    "src": "https://raw.githubusercontent.com/youmnaeidh/EventBoard/main/docs/screenshots/home-desktop.png",
+    "position": "45%"
+  },
+  {
+    "title": "Organizer dashboard",
+    "alt": "EventBoard organizer dashboard with synthetic analytics",
+    "src": "https://raw.githubusercontent.com/youmnaeidh/EventBoard/main/docs/screenshots/organizer-desktop.png",
+    "position": "0%"
+  }
+];
+
+function EventGallery() {
+  const track = useRef<HTMLDivElement>(null);
+  const activeSlide = useRef(0);
+  const [active, setActive] = useState(0);
+  const go = (index: number) => {
+    const el = track.current;
+    if (!el) return;
+    const next = Math.max(0, Math.min(eventSlides.length - 1, index));
+    el.scrollTo({ left: next * el.clientWidth, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  };
+  useEffect(() => {
+    const el = track.current;
+    if (!el) return;
+    const observer = new ResizeObserver(() => el.scrollTo({ left: activeSlide.current * el.clientWidth, behavior: "instant" }));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <section className="case-visual event-visual project-gallery" aria-label="EventBoard screenshots" aria-roledescription="carousel">
+      <div className="project-gallery-track" id="eventboard-gallery" ref={track} tabIndex={0} aria-label="Screenshots; swipe or use arrow keys"
+        onScroll={() => { const el = track.current; if (el?.clientWidth) { activeSlide.current = Math.round(el.scrollLeft / el.clientWidth); setActive(activeSlide.current); } }}
+        onKeyDown={e => {
+          if (e.key === "ArrowRight") { e.preventDefault(); go(active + 1); }
+          if (e.key === "ArrowLeft") { e.preventDefault(); go(active - 1); }
+          if (e.key === "Home") { e.preventDefault(); go(0); }
+          if (e.key === "End") { e.preventDefault(); go(eventSlides.length - 1); }
+        }}>
+        {eventSlides.map((slide, index) => <figure className="gallery-slide" key={slide.title} role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${eventSlides.length}: ${slide.title}`}>
+          <div className="gallery-frame"><img src={slide.src} alt={slide.alt} style={{ objectPosition: `50% ${slide.position}` }} loading="lazy" decoding="async" draggable={false} /></div>
+          <figcaption>{slide.title}</figcaption>
+        </figure>)}
+      </div>
+      <div className="gallery-controls">
+        <button type="button" aria-label="Previous screenshot" aria-controls="eventboard-gallery" disabled={active === 0} onClick={() => go(active - 1)}>←</button>
+        <div className="gallery-dots">{eventSlides.map((slide, index) => <button type="button" className="gallery-dot" key={slide.title} aria-label={`Show screenshot ${index + 1}: ${slide.title}`} aria-controls="eventboard-gallery" aria-current={active === index ? "true" : undefined} onClick={() => go(index)} />)}</div>
+        <button type="button" aria-label="Next screenshot" aria-controls="eventboard-gallery" disabled={active === eventSlides.length - 1} onClick={() => go(active + 1)}>→</button>
+      </div>
+      <div className="gallery-meta"><span>Swipe or use arrows</span><span className="gallery-count" aria-live="polite" aria-atomic="true">{active + 1} / {eventSlides.length}</span></div>
+    </section>
+  );
+}
 
 export default function Home() {
   const [menu, setMenu] = useState(false);
@@ -114,7 +184,7 @@ export default function Home() {
           </div>
         </article>
         <article className="case reverse">
-          <div className="case-visual event-visual"><img src="https://raw.githubusercontent.com/youmnaeidh/EventBoard/main/docs/screenshots/home-desktop.png" alt="EventBoard v2 Arabic homepage with synthetic events" /></div>
+          <EventGallery />
           <div className="case-content"><p className="case-number">02 / {t.caseLabel}</p><h3>{t.eventTitle}</h3><p className="case-desc">{t.eventDesc}</p><div className="ai-callout"><span>AI / RECOMMENDATION LOGIC</span><p>{t.eventAI}</p></div>
             <div className="case-stats">{t.eventStats.map(([n,l])=><div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div>
             <div className="tags">{t.eventTags.map(x=><span key={x}>{x}</span>)}</div><p className="case-note">{t.eventNote}</p>
