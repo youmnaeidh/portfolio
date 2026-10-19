@@ -32,11 +32,11 @@ const content = {
     madinahTags: ["Power BI", "Power Query", "DAX", "Python", "scikit-learn"],
     madinahNote: "Inspired by internship experience. This is an independent portfolio project using synthetic data—not an official municipal system.",
     github: "Explore on GitHub", live: "Open live project",
-    eventTitle: "EventBoard", eventDesc: "I led the concept, requirements, visual direction, and Arabic experience for this events platform, then independently redesigned and expanded it after graduation with behavioral tracking, personalized recommendations, organizer KPIs, and demand-gap analysis.",
-    eventAI: "AI direction: I built a transparent, rule-based recommendation layer that uses visitor behavior and interests to surface more relevant events—a practical foundation for future intelligent personalization.",
+    eventTitle: "EventBoard v2", eventDesc: "I led the original Taibah University graduation project, then independently rebuilt EventBoard v2 as a full-stack Arabic events demo with accounts, bookings, favorites, organizer analytics, and a PostgreSQL database.",
+    eventAI: "Applied AI: Hybrid recommendations, Arabic event search, demand-gap analysis, and registration forecasts run in a Python service without a paid LLM. Forecasts use synthetic training data; real-world predictive accuracy is not established.",
     eventStats: [["2023", "graduation project"], ["Lead", "team contribution"], ["Live", "web experience"]],
-    eventTags: ["HTML5", "CSS3", "JavaScript", "Local Storage", "CSV"],
-    eventNote: "I originally led this project within a Taibah University team, then independently redesigned and expanded the current version.",
+    eventTags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Python"],
+    eventNote: "Independent portfolio upgrade of a team graduation project. All events, accounts, bookings, and analytics are demonstration data; demo tickets are not real reservations.",
     capabilitiesKicker: "Capabilities", capabilitiesTitle: "A clear view of what I can contribute today.",
     levels: ["Very good", "Good", "Foundation"],
     groups: [
@@ -114,7 +114,7 @@ export default function Home() {
           </div>
         </article>
         <article className="case reverse">
-          <div className="case-visual event-visual"><img src="https://yomna-alhejaili.youmnaeidh.chatgpt.site/projects/eventboard/showcase.png" alt="EventBoard homepage showing featured event cards" /></div>
+          <div className="case-visual event-visual"><img src="https://raw.githubusercontent.com/youmnaeidh/EventBoard/main/docs/screenshots/home-desktop.png" alt="EventBoard v2 Arabic homepage with synthetic events" /></div>
           <div className="case-content"><p className="case-number">02 / {t.caseLabel}</p><h3>{t.eventTitle}</h3><p className="case-desc">{t.eventDesc}</p><div className="ai-callout"><span>AI / RECOMMENDATION LOGIC</span><p>{t.eventAI}</p></div>
             <div className="case-stats">{t.eventStats.map(([n,l])=><div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div>
             <div className="tags">{t.eventTags.map(x=><span key={x}>{x}</span>)}</div><p className="case-note">{t.eventNote}</p>
