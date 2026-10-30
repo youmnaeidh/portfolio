@@ -36,3 +36,26 @@ test("social previews disclose the actual portfolio URL", () => {
   assert.match(html, /<meta property="og:image"/);
   assert.match(html, /https:\/\/youmnaeidh\.github\.io\/portfolio\/og\.png/);
 });
+
+test("recruiter sees relevant work before background sections", () => {
+  assert.ok(html.indexOf('id="work"') < html.indexOf('id="experience"'));
+  assert.ok(html.indexOf('id="experience"') < html.indexOf('id="profile"'));
+  assert.match(html, /<nav[^>]*>\s*<a href="#work">Work<\/a>/);
+  assert.match(html, /I build insight for operational decisions\./);
+});
+
+test("project claims carry current test evidence and caveats", () => {
+  for (const fact of ["85.3%", "33.6%", "6,057", "611 more false alerts", "0.6870", "89 release tests"]) {
+    assert.ok(html.includes(fact), fact + " should be visible");
+  }
+  assert.doesNotMatch(html, /69\.3%/);
+  assert.match(html, /not an official municipal system/);
+  assert.match(html, /tickets are not real reservations/);
+});
+
+test("capabilities and contact prioritise evidence and accessibility", () => {
+  assert.match(html, /Skills demonstrated through projects/);
+  assert.doesNotMatch(html, /Very good|Foundation<\/span>|class="level l[012]"/);
+  assert.match(html, /href="mailto:youmnaeidh@gmail\.com\?subject=Portfolio%20Inquiry"/);
+  assert.doesNotMatch(html, /mail\.google\.com\/mail/);
+});
