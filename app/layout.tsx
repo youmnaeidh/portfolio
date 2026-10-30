@@ -15,7 +15,7 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL("https://youmnaeidh.github.io/portfolio/"),
   title: "Yomna Alhejaili | Data & BI Portfolio",
-  description: "Portfolio of Yomna Alhejaili — Data and Business Intelligence Analyst.",
+  description: "Yomna Alhejaili builds data analytics, BI, and applied AI case studies grounded in operations and full-stack engineering.",
   openGraph: {
     title: "Yomna Alhejaili | Data, BI & Applied AI Portfolio",
     description: "Selected work in data analytics, business intelligence, applied AI, and operations.",
