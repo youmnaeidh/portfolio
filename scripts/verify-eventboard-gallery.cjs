@@ -1,23 +1,28 @@
 const { chromium } = require(process.env.GALLERY_PLAYWRIGHT_MODULE);
 const { createServer } = require('node:http');
-const { readFileSync, mkdirSync } = require('node:fs');
+const { readFileSync, mkdirSync, existsSync } = require('node:fs');
+const { extname, resolve, sep } = require('node:path');
 const assert = require('node:assert/strict');
 
 (async () => {
-  const html = readFileSync('index.html');
-  const madinahHtml = readFileSync('projects/madinah/index.html');
-  const eventboardHtml = readFileSync('projects/eventboard/index.html');
+  const staticRoot = resolve('dist/client');
+  assert(existsSync(resolve(staticRoot, 'index.html')), 'Run npm run export:pages before browser tests');
+  const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.rsc': 'text/plain', '.svg': 'image/svg+xml', '.png': 'image/png', '.pdf': 'application/pdf', '.woff2': 'font/woff2' };
   const server = createServer((req, res) => {
-    if (req.url === '/portfolio/' || req.url === '/') {
-      res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
-      res.end(html);
-    } else if (req.url === '/portfolio/projects/madinah/') {
-      res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
-      res.end(madinahHtml);
-    } else if (req.url === '/portfolio/projects/eventboard/') {
-      res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
-      res.end(eventboardHtml);
-    } else { res.writeHead(404); res.end(); }
+    const path = new URL(req.url, 'http://localhost').pathname;
+    if (path === '/portfolio') {
+      res.writeHead(308, { location: '/portfolio/' });
+      return res.end();
+    }
+    if (!path.startsWith('/portfolio/')) { res.writeHead(404); return res.end(); }
+    let relative;
+    try { relative = decodeURIComponent(path.slice('/portfolio/'.length)); }
+    catch { res.writeHead(400); return res.end(); }
+    if (relative.endsWith('/') || !relative) relative += 'index.html';
+    const file = resolve(staticRoot, relative);
+    if (!file.startsWith(staticRoot + sep) || !existsSync(file)) { res.writeHead(404); return res.end(); }
+    res.writeHead(200, { 'content-type': types[extname(file)] || 'application/octet-stream' });
+    res.end(readFileSync(file));
   });
   await new Promise(resolve => server.listen(4173, '127.0.0.1', resolve));
   const browser = await chromium.launch();
@@ -27,6 +32,11 @@ const assert = require('node:assert/strict');
       const context = await browser.newContext({ viewport: { width, height: 1000 }, isMobile: width < 500, hasTouch: width < 500, reducedMotion: 'reduce' });
       const page = await context.newPage();
       await page.goto('http://127.0.0.1:4173/portfolio/');
+      assert.equal(await page.locator('body').count(), 1);
+      assert.equal((await page.locator('.contact-main p').innerText()).includes('Riyadh'), false);
+      assert.equal((await page.locator('.contact-main p').innerText()).includes('junior roles'), false);
+      const staticResources = await page.evaluate(() => performance.getEntriesByType('resource').filter(e => e.name.includes('/portfolio/_next/')).length);
+      assert(staticResources > 0, 'Exported page must load generated assets under /portfolio/_next/');
       if (width < 500) {
         const workCta = await page.locator('.hero .button.primary').boundingBox();
         const cvCta = await page.locator('.hero .cv-button').boundingBox();
