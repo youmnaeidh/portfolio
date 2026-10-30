@@ -38,3 +38,19 @@ main{min-height:100vh;overflow:hidden;font-family:var(--font-inter-tight),Arial,
 .gallery-meta{display:flex;justify-content:space-between;gap:12px;margin-top:3px;font-size:11px;color:#f4f0e7b3}
 @media(max-width:560px){.gallery-frame{aspect-ratio:4/3}.gallery-slide figcaption{font-size:12px}}
 .link-row{flex-wrap:wrap;row-gap:18px}
+
+/* Recruiter readability pass: keep the brand while bringing both mobile actions into the first screen. */
+.eyebrow{font-size:13px;letter-spacing:.1em}
+.case-note{font-size:14px;line-height:1.55}
+:where(a,button,[tabindex]):focus-visible{outline:3px solid currentColor;outline-offset:4px}
+@media(max-width:560px){
+  .hero{min-height:0;padding-top:34px;padding-bottom:46px}
+  .hero h1{font-size:clamp(62px,18vw,88px);line-height:.86;margin-top:55px}
+  .hero-copy{margin-top:42px}
+  .lead{font-size:27px;line-height:1.1;margin-bottom:14px}
+  .intro{font-size:15.5px;line-height:1.45;margin-bottom:22px}
+  .actions{gap:9px}
+  .button{min-height:46px}
+  .eyebrow{font-size:12px;letter-spacing:.08em}
+  .case-stats span{font-size:12px;line-height:1.35}
+}
