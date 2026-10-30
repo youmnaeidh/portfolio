@@ -37,3 +37,4 @@ main{min-height:100vh;overflow:hidden;font-family:var(--font-inter-tight),Arial,
 .gallery-dot[aria-current="true"]::before{width:20px;border-radius:4px;background:#f3bd65}
 .gallery-meta{display:flex;justify-content:space-between;gap:12px;margin-top:3px;font-size:11px;color:#f4f0e7b3}
 @media(max-width:560px){.gallery-frame{aspect-ratio:4/3}.gallery-slide figcaption{font-size:12px}}
+.link-row{flex-wrap:wrap;row-gap:18px}

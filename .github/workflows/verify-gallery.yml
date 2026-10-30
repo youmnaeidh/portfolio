@@ -2,10 +2,10 @@ name: Verify portfolio browser journeys
 on:
   workflow_dispatch:
   pull_request:
-    paths: [index.html, projects/madinah/index.html, app/page.tsx, app/globals.css, scripts/verify-eventboard-gallery.cjs, .github/workflows/verify-gallery.yml]
+    paths: [index.html, projects/madinah/index.html, projects/eventboard/index.html, app/page.tsx, app/globals.css, scripts/verify-eventboard-gallery.cjs, .github/workflows/verify-gallery.yml]
   push:
     branches: [fix/eventboard-gallery, main]
-    paths: [index.html, projects/madinah/index.html, app/page.tsx, app/globals.css, scripts/verify-eventboard-gallery.cjs, .github/workflows/verify-gallery.yml]
+    paths: [index.html, projects/madinah/index.html, projects/eventboard/index.html, app/page.tsx, app/globals.css, scripts/verify-eventboard-gallery.cjs, .github/workflows/verify-gallery.yml]
 permissions:
   contents: read
 jobs:
@@ -18,7 +18,7 @@ jobs:
         with: { node-version: 22 }
       - run: npm install --prefix "$RUNNER_TEMP/gallery-check" @playwright/test@1.56.0
       - run: node "$RUNNER_TEMP/gallery-check/node_modules/playwright/cli.js" install --with-deps chromium
-      - name: Check gallery, case-study layout and model comparison
+      - name: Check gallery and both project case-study journeys
         run: GALLERY_PLAYWRIGHT_MODULE="$RUNNER_TEMP/gallery-check/node_modules/@playwright/test" node scripts/verify-eventboard-gallery.cjs
       - uses: actions/upload-artifact@v4
         if: always()

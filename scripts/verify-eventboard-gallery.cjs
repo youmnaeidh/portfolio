@@ -6,6 +6,7 @@ const assert = require('node:assert/strict');
 (async () => {
   const html = readFileSync('index.html');
   const madinahHtml = readFileSync('projects/madinah/index.html');
+  const eventboardHtml = readFileSync('projects/eventboard/index.html');
   const server = createServer((req, res) => {
     if (req.url === '/portfolio/' || req.url === '/') {
       res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
@@ -13,6 +14,9 @@ const assert = require('node:assert/strict');
     } else if (req.url === '/portfolio/projects/madinah/') {
       res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
       res.end(madinahHtml);
+    } else if (req.url === '/portfolio/projects/eventboard/') {
+      res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
+      res.end(eventboardHtml);
     } else { res.writeHead(404); res.end(); }
   });
   await new Promise(resolve => server.listen(4173, '127.0.0.1', resolve));
@@ -86,6 +90,26 @@ const assert = require('node:assert/strict');
       assert.equal(await page.locator('.screen-card img').count(), 3);
       await page.screenshot({ path: 'gallery-evidence/madinah-case-study-' + width + '.png', fullPage: true });
       console.log('PASS: Madinah case study ' + width + 'px, no overflow and model comparison toggle');
+      await page.goto('http://127.0.0.1:4173/portfolio/projects/eventboard/', { waitUntil: 'domcontentloaded' });
+      assert.equal(await page.title(), 'EventBoard v2 — Case Study | Yomna Alhejaili');
+      assert(await page.getByRole('heading', { name: 'EventBoard.' }).isVisible());
+      assert(await page.getByRole('link', { name: 'Explore live demo' }).isVisible());
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'No EventBoard case-study overflow at ' + width + 'px');
+      await page.locator('.views').scrollIntoViewIfNeeded();
+      assert.equal(await page.locator('#view-title').textContent(), 'Local discovery, in Arabic.');
+      await page.getByRole('button', { name: 'Organizer console' }).click();
+      assert.equal(await page.locator('#view-title').textContent(), 'An organizer console.');
+      assert.match(await page.locator('#view-image').getAttribute('src'), /organizer-desktop\.png$/);
+      assert.equal(await page.getByRole('button', { name: 'Organizer console' }).getAttribute('aria-pressed'), 'true');
+      await page.getByRole('button', { name: 'Mobile experience' }).click();
+      assert.match(await page.locator('#view-image').getAttribute('src'), /home-mobile\.png$/);
+      await page.locator('#view-image').evaluate(img => img.decode());
+      assert(await page.locator('#view-image').evaluate(img => img.naturalWidth > 0));
+      await page.getByRole('button', { name: 'Discover events' }).click();
+      assert.equal(await page.getByRole('button', { name: 'Discover events' }).getAttribute('aria-pressed'), 'true');
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'No EventBoard overflow after view switching');
+      await page.screenshot({ path: 'gallery-evidence/eventboard-case-study-' + width + '.png', fullPage: true });
+      console.log('PASS: EventBoard case study ' + width + 'px, evidence, responsive layout and three views');
       await context.close();
     }
   } finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }
