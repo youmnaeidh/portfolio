@@ -28,7 +28,7 @@ An end-to-end Power BI and predictive analytics case study using **30,000 privac
 
 **Revised holdout evaluation (6,057 resolved reports):** 85.3% recall, 33.6% precision, and 0.6870 ROC-AUC. A time-based review excluded four unverified capacity features and corrected 645 labels that were not available at the original cutoffs. The revised threshold found 148 additional true positives at the cost of 611 additional false alerts. These are synthetic-data evaluation results, not demonstrated real-world effectiveness.
 
-[Explore the case study](https://github.com/youmnaeidh/Madinah-Operations-Intelligence)
+[Read the portfolio case study](https://youmnaeidh.github.io/portfolio/projects/madinah/) · [Source repository](https://github.com/youmnaeidh/Madinah-Operations-Intelligence)
 
 ### EventBoard v2
 
@@ -94,9 +94,7 @@ versions in sync until the deployment pipeline is unified.
 
 ## Contact
 
-**Yomna Alhejaili**  
-Junior Data & Business Intelligence Analyst  
-Saudi Arabia
+**Yomna Alhejaili** — Junior Data & Business Intelligence Analyst, Saudi Arabia
 
 - [Portfolio](https://youmnaeidh.github.io/portfolio/)
 - [LinkedIn](https://www.linkedin.com/in/yomna-alhejaili-0b3991216)

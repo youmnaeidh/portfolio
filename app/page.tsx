@@ -31,7 +31,7 @@ const content = {
     madinahStats: [["30K", "synthetic reports"], ["85.3%", "revised test recall"], ["33.6%", "revised test precision"]],
     madinahTags: ["Power BI", "Power Query", "DAX", "Python", "scikit-learn"],
     madinahNote: "Revised test ROC-AUC: 0.6870. Synthetic data, independent project, not an official municipal system. The alert trade-off needs operational validation.",
-    github: "Explore on GitHub", live: "Open live project",
+    github: "Explore on GitHub", live: "Open live project", caseStudyLink: "Read the case study",
     eventTitle: "EventBoard v2", eventDesc: "I led the original university graduation project, then rebuilt EventBoard as an Arabic-first full-stack demo with role-based accounts, transactional bookings, favorites, organizer insights, and a PostgreSQL database.",
     eventAI: "Applied AI: Hybrid recommendations, Arabic event search, demand-gap analysis, and registration forecasts run in a Python service without a paid LLM. Forecasts use synthetic training data; real-world predictive accuracy is not established.",
     eventStats: [["89", "tests in release CI"], ["3", "seats protected under 6 booking requests"], ["Live", "full-stack demo"]],
@@ -163,7 +163,7 @@ export default function Home() {
           <div className="case-content"><p className="case-number">01 / {t.caseLabel}</p><h3>{t.madinahTitle}</h3><p className="case-desc">{t.madinahDesc}</p><div className="ai-callout"><span>AI / PREDICTIVE ANALYTICS</span><p>{t.madinahAI}</p></div>
             <div className="case-stats">{t.madinahStats.map(([n,l])=><div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div>
             <div className="tags">{t.madinahTags.map(x=><span key={x}>{x}</span>)}</div><p className="case-note">{t.madinahNote}</p>
-            <a className="text-link" href="https://github.com/youmnaeidh/Madinah-Operations-Intelligence" target="_blank" rel="noreferrer">{t.github}<Arrow /></a>
+            <div className="link-row"><a className="text-link" href="/portfolio/projects/madinah/">{t.caseStudyLink}<Arrow /></a><a className="text-link subtle" href="https://github.com/youmnaeidh/Madinah-Operations-Intelligence" target="_blank" rel="noreferrer">GitHub<Arrow /></a></div>
           </div>
         </article>
         <article className="case reverse">

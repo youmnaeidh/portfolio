@@ -5,10 +5,14 @@ const assert = require('node:assert/strict');
 
 (async () => {
   const html = readFileSync('index.html');
+  const madinahHtml = readFileSync('projects/madinah/index.html');
   const server = createServer((req, res) => {
     if (req.url === '/portfolio/' || req.url === '/') {
       res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
       res.end(html);
+    } else if (req.url === '/portfolio/projects/madinah/') {
+      res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
+      res.end(madinahHtml);
     } else { res.writeHead(404); res.end(); }
   });
   await new Promise(resolve => server.listen(4173, '127.0.0.1', resolve));
@@ -67,6 +71,21 @@ const assert = require('node:assert/strict');
       }
       await gallery.screenshot({ path: 'gallery-evidence/eventboard-gallery-' + width + '.png' });
       console.log('PASS: ' + width + 'px, four images, bounded height, arrows, dots and keyboard');
+      await page.goto('http://127.0.0.1:4173/portfolio/projects/madinah/', { waitUntil: 'domcontentloaded' });
+      assert.equal(await page.title(), 'Madinah Operations Intelligence — Yomna Alhejaili');
+      assert(await page.getByRole('heading', { name: 'Better recall. More noise.' }).isVisible());
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'No case-study page overflow at ' + width + 'px');
+      assert.equal(await page.locator('#recall').textContent(), '85.3%');
+      await page.getByRole('button', { name: 'Original' }).click();
+      assert.equal(await page.locator('#recall').textContent(), '76.6%');
+      assert.equal(await page.locator('#precision').textContent(), '36.6%');
+      assert.equal(await page.getByRole('button', { name: 'Original' }).getAttribute('aria-pressed'), 'true');
+      await page.getByRole('button', { name: 'Revised' }).click();
+      assert.equal(await page.locator('#recall').textContent(), '85.3%');
+      assert.equal(await page.locator('#auc').textContent(), '0.6870');
+      assert.equal(await page.locator('.screen-card img').count(), 3);
+      await page.screenshot({ path: 'gallery-evidence/madinah-case-study-' + width + '.png', fullPage: true });
+      console.log('PASS: Madinah case study ' + width + 'px, no overflow and model comparison toggle');
       await context.close();
     }
   } finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }
