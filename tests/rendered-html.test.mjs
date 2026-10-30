@@ -100,3 +100,17 @@ test("capabilities and contact prioritise evidence and accessibility", () => {
   assert.match(html, /href="mailto:youmnaeidh@gmail\.com\?subject=Portfolio%20Inquiry"/);
   assert.doesNotMatch(html, /mail\.google\.com\/mail/);
 });
+
+// GitHub Pages currently serves a checked-in snapshot. Guard against drifting
+// career positioning while the source-to-static pipeline is still separate.
+test("published recruiter positioning stays aligned with React source", () => {
+  const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  for (const fact of [
+    "DATA ANALYST · BUSINESS INTELLIGENCE · APPLIED AI",
+    "With a full-stack engineering foundation and municipal operations experience, I build BI dashboards, evaluate predictive models, and translate analysis into operational decisions.",
+  ]) {
+    assert.ok(source.includes(fact), "React source missing: " + fact);
+    assert.ok(html.includes(fact), "Published snapshot missing: " + fact);
+  }
+  assert.match(html, /id="recruiter-mobile-fixes"/);
+});

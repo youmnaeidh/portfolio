@@ -7,9 +7,9 @@ const content = {
     name: "Yomna Alhejaili",
     role: "Data & Business Intelligence Analyst",
     nav: ["Work", "Experience", "Profile", "Capabilities"],
-    eyebrow: "DATA ANALYTICS · BUSINESS INTELLIGENCE · APPLIED AI",
+    eyebrow: "DATA ANALYST · BUSINESS INTELLIGENCE · APPLIED AI",
     lead: "I build insight for operational decisions.",
-    intro: "With a full-stack engineering foundation and experience in municipal operations, I build dashboards, test predictive models, and connect technical analysis to everyday operational decisions.",
+    intro: "With a full-stack engineering foundation and municipal operations experience, I build BI dashboards, evaluate predictive models, and translate analysis into operational decisions.",
     workCta: "View selected work",
     proof: [
       ["Municipal analytics", "30K synthetic service reports"],

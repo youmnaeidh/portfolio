@@ -27,6 +27,22 @@ const assert = require('node:assert/strict');
       const context = await browser.newContext({ viewport: { width, height: 1000 }, isMobile: width < 500, hasTouch: width < 500, reducedMotion: 'reduce' });
       const page = await context.newPage();
       await page.goto('http://127.0.0.1:4173/portfolio/');
+      if (width < 500) {
+        const workCta = await page.locator('.hero .button.primary').boundingBox();
+        const cvCta = await page.locator('.hero .cv-button').boundingBox();
+        assert(workCta && cvCta, 'Mobile hero must show work and CV actions');
+        assert(cvCta.y + cvCta.height < 900, 'Mobile CV action must be reachable near the first fold at ' + width + 'px');
+      }
+      assert(await page.locator('.eyebrow').innerText() === 'DATA ANALYST · BUSINESS INTELLIGENCE · APPLIED AI');
+      if (width < 500) {
+        const toggle = page.getByRole('button', { name: 'Open menu' });
+        const nav = page.getByRole('navigation', { name: 'Primary navigation' });
+        await toggle.click();
+        assert(await nav.isVisible(), 'Mobile navigation must open');
+        await toggle.click();
+        assert(!(await nav.isVisible()), 'Mobile navigation must close');
+      }
+      await page.screenshot({ path: 'gallery-evidence/portfolio-home-' + width + '.png', fullPage: true });
       const gallery = page.locator('.project-gallery');
       await gallery.scrollIntoViewIfNeeded();
       assert.equal(await gallery.locator('.gallery-slide').count(), 4);
