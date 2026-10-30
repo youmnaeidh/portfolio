@@ -34,6 +34,7 @@ const assert = require('node:assert/strict');
         assert(cvCta.y + cvCta.height < 900, 'Mobile CV action must be reachable near the first fold at ' + width + 'px');
       }
       assert(await page.locator('.eyebrow').innerText() === 'DATA ANALYST · BUSINESS INTELLIGENCE · APPLIED AI');
+      await page.screenshot({ path: 'gallery-evidence/portfolio-home-' + width + '.png', fullPage: true });
       const gallery = page.locator('.project-gallery');
       await gallery.scrollIntoViewIfNeeded();
       assert.equal(await gallery.locator('.gallery-slide').count(), 4);
