@@ -70,16 +70,20 @@ portfolio/
 Requirements: Node.js 22 or newer.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
 ## Build and test
 
 ```bash
-npm run build
-npm test
+npm run check  # lint, test the published HTML, and build the React source
 ```
+
+The public GitHub Pages site currently serves the checked-in `index.html`.
+`npm run build` verifies the React/vinext source but does **not** replace that
+published HTML snapshot automatically. When editing page content, keep both
+versions in sync until the deployment pipeline is unified.
 
 ## Project transparency
 

@@ -101,6 +101,8 @@ function EventGallery() {
   }, []);
   return (
     <section className="case-visual event-visual project-gallery" aria-label="EventBoard screenshots" aria-roledescription="carousel">
+      {/* Intentionally focusable scroll region: Arrow keys, Home and End operate the gallery. */}
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-tabindex */}
       <div className="project-gallery-track" id="eventboard-gallery" ref={track} tabIndex={0} aria-label="Screenshots; swipe or use arrow keys"
         onScroll={() => { const el = track.current; if (el?.clientWidth) { activeSlide.current = Math.round(el.scrollLeft / el.clientWidth); setActive(activeSlide.current); } }}
         onKeyDown={e => {
