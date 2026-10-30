@@ -47,7 +47,7 @@ const content = {
     ],
     educationKicker: "Education", educationTitle: "Full-Stack Web Development", educationMeta: "Intermediate Diploma · Taibah University · 2024",
     educationBody: "My diploma gave me a multidisciplinary foundation spanning front-end development, systems thinking, databases, programming, and digital product delivery.",
-    contactKicker: "Contact", contactTitle: "Let’s make information useful.", contactBody: "Open to junior roles in data analytics, business intelligence, applied AI, and operations reporting—especially in Riyadh or Madinah.",
+    contactKicker: "Contact", contactTitle: "Let’s make information useful.", contactBody: "Selected work connecting data analytics, business intelligence, and applied AI with practical operational questions.",
     email: "Send an email", linkedin: "LinkedIn", location: "Saudi Arabia", footer: "Designed and built for purposeful work.",
   }
 };
