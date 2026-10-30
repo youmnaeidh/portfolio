@@ -55,3 +55,10 @@ main{min-height:100vh;overflow:hidden;font-family:var(--font-inter-tight),Arial,
   .case-stats span{font-size:12px;line-height:1.35}
   .contour{display:none}
 }
+
+/* A text cue keeps the compact navigation discoverable on touch screens. */
+@media(max-width:900px){
+  .menu-button{position:relative;width:76px;min-height:44px;padding:8px 0 8px 54px;cursor:pointer}
+  .menu-button::before{content:"Menu";position:absolute;left:0;top:50%;transform:translateY(-50%);font-size:12px;letter-spacing:.02em}
+  .menu-button i{width:20px;height:2px;margin:5px 0}
+}
