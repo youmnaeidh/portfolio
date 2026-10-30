@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 
-// GitHub Pages serves this checked-in snapshot. Keep basic recruiter journeys
-// working even when the React source or gallery implementation changes.
-const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
+// Test the exact static export uploaded by the GitHub Pages workflow.
+// The homepage is generated from app/page.tsx, never edited separately.
+const html = readFileSync(new URL("../dist/client/index.html", import.meta.url), "utf8");
 
 test("the published page identifies Yomna and exposes selected work", () => {
   assert.match(html, /<html lang="en">/);
@@ -22,11 +22,11 @@ test("a recruiter can reach projects and download the published CV", () => {
   assert.match(html, /href="https:\/\/github\.com\/youmnaeidh\/EventBoard"/);
   assert.match(html, /href="https:\/\/youmnaeidh\.github\.io\/EventBoard\/"/);
   assert.match(html, /href="\/portfolio\/Yomna-Alhejaili-CV\.pdf"/);
-  assert.ok(existsSync(new URL("../Yomna-Alhejaili-CV.pdf", import.meta.url)));
+  assert.ok(existsSync(new URL("../dist/client/Yomna-Alhejaili-CV.pdf", import.meta.url)));
 });
 
 test("EventBoard case study distinguishes team origins, independent rebuild and verified evidence", () => {
-  const url = new URL("../projects/eventboard/index.html", import.meta.url);
+  const url = new URL("../dist/client/projects/eventboard/index.html", import.meta.url);
   assert.ok(existsSync(url));
   const page = readFileSync(url, "utf8");
   assert.match(page, /EventBoard v2 — Case Study/);
@@ -46,7 +46,7 @@ test("EventBoard case study distinguishes team origins, independent rebuild and 
 });
 
 test("the Madinah case study preserves original evidence and revised trade-offs", () => {
-  const caseStudyUrl = new URL("../projects/madinah/index.html", import.meta.url);
+  const caseStudyUrl = new URL("../dist/client/projects/madinah/index.html", import.meta.url);
   assert.ok(existsSync(caseStudyUrl));
   const caseStudy = readFileSync(caseStudyUrl, "utf8");
   assert.match(caseStudy, /Madinah Operations Intelligence/);
@@ -101,16 +101,21 @@ test("capabilities and contact prioritise evidence and accessibility", () => {
   assert.doesNotMatch(html, /mail\.google\.com\/mail/);
 });
 
-// GitHub Pages currently serves a checked-in snapshot. Guard against drifting
-// career positioning while the source-to-static pipeline is still separate.
-test("published recruiter positioning stays aligned with React source", () => {
+test("generated homepage keeps React positioning and does not list preferred job cities", () => {
   const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
   for (const fact of [
     "DATA ANALYST · BUSINESS INTELLIGENCE · APPLIED AI",
     "With a full-stack engineering foundation and municipal operations experience, I build BI dashboards, evaluate predictive models, and translate analysis into operational decisions.",
+    "Selected work connecting data analytics, business intelligence, and applied AI with practical operational questions.",
   ]) {
     assert.ok(source.includes(fact), "React source missing: " + fact);
-    assert.ok(html.includes(fact), "Published snapshot missing: " + fact);
+    assert.ok(html.includes(fact), "Exported homepage missing: " + fact);
   }
-  assert.match(html, /id="recruiter-mobile-fixes"/);
+  const css = readFileSync(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.menu-button::before\{content:"Menu"/);
+  assert.doesNotMatch(html, /especially in Riyadh or Madinah|Open to junior roles/i);
+  assert.match(html, /href="\/portfolio\/_next\/static\//);
+  assert.ok(existsSync(new URL("../dist/client/index.rsc", import.meta.url)));
+  assert.ok(existsSync(new URL("../dist/client/projects/madinah/index.html", import.meta.url)));
+  assert.ok(existsSync(new URL("../dist/client/projects/eventboard/index.html", import.meta.url)));
 });
