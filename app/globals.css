@@ -53,4 +53,5 @@ main{min-height:100vh;overflow:hidden;font-family:var(--font-inter-tight),Arial,
   .button{min-height:46px}
   .eyebrow{font-size:12px;letter-spacing:.08em}
   .case-stats span{font-size:12px;line-height:1.35}
+  .contour{display:none}
 }
