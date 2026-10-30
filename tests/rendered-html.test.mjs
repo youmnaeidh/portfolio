@@ -17,11 +17,32 @@ test("the published page identifies Yomna and exposes selected work", () => {
 
 test("a recruiter can reach projects and download the published CV", () => {
   assert.match(html, /href="\/portfolio\/projects\/madinah\/"/);
+  assert.match(html, /href="\/portfolio\/projects\/eventboard\/"/);
   assert.match(html, /href="https:\/\/github\.com\/youmnaeidh\/Madinah-Operations-Intelligence"/);
   assert.match(html, /href="https:\/\/github\.com\/youmnaeidh\/EventBoard"/);
   assert.match(html, /href="https:\/\/youmnaeidh\.github\.io\/EventBoard\/"/);
   assert.match(html, /href="\/portfolio\/Yomna-Alhejaili-CV\.pdf"/);
   assert.ok(existsSync(new URL("../Yomna-Alhejaili-CV.pdf", import.meta.url)));
+});
+
+test("EventBoard case study distinguishes team origins, independent rebuild and verified evidence", () => {
+  const url = new URL("../projects/eventboard/index.html", import.meta.url);
+  assert.ok(existsSync(url));
+  const page = readFileSync(url, "utf8");
+  assert.match(page, /EventBoard v2 — Case Study/);
+  assert.match(page, /team graduation project/);
+  assert.match(page, /independently/);
+  for (const fact of ["89 tests", "3 seats", "synthetic", "10.23", "18.29", "800 synthetic events"]) {
+    assert.ok(page.toLowerCase().includes(fact.toLowerCase()), `${fact} must be disclosed`);
+  }
+  for (const screenshot of ["home-desktop.png", "home-mobile.png", "organizer-desktop.png"]) {
+    assert.ok(page.includes(screenshot), `${screenshot} must be shown`);
+  }
+  assert.match(page, /data-view="visitor" aria-pressed="true"/);
+  assert.match(page, /data-view="organizer" aria-pressed="false"/);
+  assert.match(page, /data-view="mobile" aria-pressed="false"/);
+  assert.match(page, /EventBoard\/actions\/runs\/39154465651/);
+  assert.match(page, /not real-world forecasting accuracy/i);
 });
 
 test("the Madinah case study preserves original evidence and revised trade-offs", () => {

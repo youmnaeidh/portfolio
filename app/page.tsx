@@ -171,7 +171,7 @@ export default function Home() {
           <div className="case-content"><p className="case-number">02 / {t.caseLabel}</p><h3>{t.eventTitle}</h3><p className="case-desc">{t.eventDesc}</p><div className="ai-callout"><span>AI / RECOMMENDATION LOGIC</span><p>{t.eventAI}</p></div>
             <div className="case-stats">{t.eventStats.map(([n,l])=><div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div>
             <div className="tags">{t.eventTags.map(x=><span key={x}>{x}</span>)}</div><p className="case-note">{t.eventNote}</p>
-            <div className="link-row"><a className="text-link" href="https://youmnaeidh.github.io/EventBoard/" target="_blank" rel="noreferrer">{t.live}<Arrow /></a><a className="text-link subtle" href="https://github.com/youmnaeidh/EventBoard" target="_blank" rel="noreferrer">GitHub<Arrow /></a></div>
+            <div className="link-row"><a className="text-link" href="/portfolio/projects/eventboard/">{t.caseStudyLink}<Arrow /></a><a className="text-link subtle" href="https://youmnaeidh.github.io/EventBoard/" target="_blank" rel="noreferrer">Live demo<Arrow /></a><a className="text-link subtle" href="https://github.com/youmnaeidh/EventBoard" target="_blank" rel="noreferrer">GitHub<Arrow /></a></div>
           </div>
         </article>
       </section>
