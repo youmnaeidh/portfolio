@@ -16,11 +16,31 @@ test("the published page identifies Yomna and exposes selected work", () => {
 });
 
 test("a recruiter can reach projects and download the published CV", () => {
+  assert.match(html, /href="\/portfolio\/projects\/madinah\/"/);
   assert.match(html, /href="https:\/\/github\.com\/youmnaeidh\/Madinah-Operations-Intelligence"/);
   assert.match(html, /href="https:\/\/github\.com\/youmnaeidh\/EventBoard"/);
   assert.match(html, /href="https:\/\/youmnaeidh\.github\.io\/EventBoard\/"/);
   assert.match(html, /href="\/portfolio\/Yomna-Alhejaili-CV\.pdf"/);
   assert.ok(existsSync(new URL("../Yomna-Alhejaili-CV.pdf", import.meta.url)));
+});
+
+test("the Madinah case study preserves original evidence and revised trade-offs", () => {
+  const caseStudyUrl = new URL("../projects/madinah/index.html", import.meta.url);
+  assert.ok(existsSync(caseStudyUrl));
+  const caseStudy = readFileSync(caseStudyUrl, "utf8");
+  assert.match(caseStudy, /Madinah Operations Intelligence/);
+  assert.match(caseStudy, /30,000/);
+  assert.match(caseStudy, /synthetic data/i);
+  assert.match(caseStudy, /not yet published in that original repository/);
+  for (const screenshot of ["01-overview.png", "02-operations.png", "03-ai-insights.png", "04-project-info.png"]) {
+    assert.ok(caseStudy.includes(screenshot), screenshot);
+  }
+  for (const measurement of ["76.6%", "85.3%", "36.6%", "33.6%", "0.6927", "0.6870", "2,250", "2,861"]) {
+    assert.ok(caseStudy.includes(measurement), measurement);
+  }
+  assert.match(caseStudy, /data-version="baseline"/);
+  assert.match(caseStudy, /data-version="revised"/);
+  assert.match(caseStudy, /aria-pressed/);
 });
 
 test("the EventBoard screenshot gallery retains four accessible slides", () => {
