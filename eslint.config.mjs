@@ -23,6 +23,12 @@ const eslintConfig = defineConfig([
   jsxA11y.flatConfigs.recommended,
   next.configs["core-web-vitals"],
   {
+    files: ["scripts/**/*.cjs"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
+  {
     languageOptions: {
       globals: {
         ...globals.browser,

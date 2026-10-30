@@ -24,7 +24,6 @@ const assert = require('node:assert/strict');
       assert.equal(await gallery.locator('.gallery-slide').count(), 4);
       assert((await gallery.boundingBox()).height < 550, 'Gallery must stay compact');
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), 'No page overflow');
-      const count = gallery.locator('.gallery-count');
       async function checkSlide(index) {
         await page.waitForFunction(i => document.querySelector('.gallery-count').textContent === (i + 1) + ' / 4', index);
         await page.waitForFunction(i => {
