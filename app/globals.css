@@ -39,6 +39,9 @@ main{min-height:100vh;overflow:hidden;font-family:var(--font-inter-tight),Arial,
 @media(max-width:560px){.gallery-frame{aspect-ratio:4/3}.gallery-slide figcaption{font-size:12px}}
 .link-row{flex-wrap:wrap;row-gap:18px}
 
+/* Preserve the dashboard screenshot's intrinsic ratio when the card narrows. */
+.featured-case .case-visual img{width:100%;height:auto}
+
 /* Recruiter readability pass: keep the brand while bringing both mobile actions into the first screen. */
 .eyebrow{font-size:13px;letter-spacing:.1em}
 .case-note{font-size:14px;line-height:1.55}
