@@ -75,6 +75,31 @@ test("the Madinah case study preserves original evidence and revised trade-offs"
   assert.match(caseStudy, /aria-pressed/);
 });
 
+test("the homepage footer offers a direct GitHub profile link", () => {
+  const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  assert.match(source, /href="https:\/\/github\.com\/youmnaeidh" target="_blank" rel="noopener noreferrer">GitHub/);
+  assert.match(html, /href="https:\/\/github\.com\/youmnaeidh"[^>]*>GitHub/);
+});
+
+test("Madinah uses the same editorial case-study system as EventBoard", () => {
+  const madinah = readFileSync(new URL("../dist/client/projects/madinah/index.html", import.meta.url), "utf8");
+  const eventboard = readFileSync(new URL("../dist/client/projects/eventboard/index.html", import.meta.url), "utf8");
+  for (const structure of ['class="hero"', 'class="hero-sticky"', 'class="ticket"', 'class="receipt"', 'class="views wrap"', 'class="gallery"', 'class="closing"']) {
+    assert.ok(eventboard.includes(structure), "EventBoard lacks "+structure);
+    assert.ok(madinah.includes(structure), "Madinah lacks "+structure);
+  }
+  assert.equal((madinah.match(/<figure><a href="https:\/\/github\.com\/youmnaeidh\/Madinah-Operations-Intelligence\/blob\/main\/screenshots\//g) ?? []).length, 4);
+  assert.match(madinah, /aria-label="Four Madinah Power BI project screenshots"/);
+  assert.match(madinah, /id="gallery-prev" aria-label="Previous screenshot"/);
+  assert.match(madinah, /id="gallery-next" aria-label="Next screenshot"/);
+  assert.match(madinah, /data-view="overview" aria-pressed="true"/);
+  assert.match(madinah, /data-view="operations" aria-pressed="false"/);
+  assert.match(madinah, /data-version="baseline" aria-pressed="false"/);
+  assert.match(madinah, /data-version="revised" aria-pressed="true"/);
+  assert.match(madinah, /original Power BI prototype/i);
+  assert.match(madinah, /not an official municipal system/i);
+});
+
 test("the EventBoard screenshot gallery retains four accessible slides", () => {
   assert.equal((html.match(/class="gallery-slide"/g) ?? []).length, 4);
   assert.equal((html.match(/class="gallery-dot"/g) ?? []).length, 4);
