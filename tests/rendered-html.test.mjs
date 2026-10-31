@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { test } from "node:test";
 
 // Test the exact static export uploaded by the GitHub Pages workflow.
@@ -76,6 +76,17 @@ test("social previews disclose the actual portfolio URL", () => {
   assert.match(html, /<meta name="description"/);
   assert.match(html, /<meta property="og:image"/);
   assert.match(html, /https:\/\/youmnaeidh\.github\.io\/portfolio\/og\.png/);
+});
+
+test("JavaScript dependency preloads stay under the /portfolio/ base path", () => {
+  const chunksDir = new URL("../dist/client/_next/static/chunks/", import.meta.url);
+  const chunks = readdirSync(chunksDir)
+    .filter((filename) => filename.endsWith(".js"))
+    .map((filename) => readFileSync(new URL(filename, chunksDir), "utf8"));
+  assert.ok(chunks.some((chunk) => chunk.includes('"portfolio/_next/static/chunks/')));
+  for (const chunk of chunks) {
+    assert.doesNotMatch(chunk, /["']_next\/static\/chunks\//);
+  }
 });
 
 test("recruiter sees relevant work before background sections", () => {
