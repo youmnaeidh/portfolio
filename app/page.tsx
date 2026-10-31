@@ -8,37 +8,36 @@ const content = {
     role: "Data & Business Intelligence Analyst",
     nav: ["Work", "Experience", "Profile", "Capabilities"],
     eyebrow: "DATA ANALYST · BUSINESS INTELLIGENCE · APPLIED AI",
-    lead: "I build insight for operational decisions.",
-    intro: "With a full-stack engineering foundation and municipal operations experience, I build BI dashboards, evaluate predictive models, and translate analysis into operational decisions.",
+    lead: "I build BI and data tools around operational questions.",
+    intro: "I studied full-stack web development and trained in municipal operations monitoring. I now use Power BI, Python and web engineering to examine SLA risk, explain model trade-offs and build dependable user flows.",
     workCta: "View selected work",
     proof: [
       ["Municipal analytics", "30K synthetic service reports"],
       ["Model evaluation", "6,057 resolved test reports"],
       ["Full-stack delivery", "89 release tests on EventBoard"],
     ],
-    profileKicker: "Profile", profileTitle: "A technical foundation, shaped by an operational point of view.",
-    profileBody: ["I am a Full-Stack Web Development diploma graduate from Taibah University, with practical experience inside the Municipal Operations Monitoring Center at Al Madinah Region Municipality.", "My work sits between systems, data, and people: understanding how operations move, translating that movement into useful reporting, and presenting insights in a way decision-makers can act on."],
-    focus: "Career focus", focusText: "Data, Business Intelligence, and technology-enabled consulting roles where analysis improves how organizations operate.",
-    experienceKicker: "Experience", experienceTitle: "Where technology met the reality of city operations.",
+    profileKicker: "Profile", profileTitle: "A builder’s approach to data.",
+    profileBody: ["My diploma at Taibah University taught me how frontends, APIs and databases fit together. Training in Al Madinah Region Municipality’s operations monitoring center taught me to understand the service workflow before deciding what to measure.", "In independent projects, I pay attention to metric definitions, when each ML input becomes available and what it would cost a team to act on a prediction. Those details matter as much as the dashboard or model itself."],
+    focus: "Career focus", focusText: "Data analytics, business intelligence and applied AI roles that connect technical implementation with business and operational questions.",
+    experienceKicker: "Experience", experienceTitle: "Inside municipal operations.",
     expRole: "General Services Monitor (Trainee)", expSub: "Operations Reporting & BI Support",
     expOrg: "Al Madinah Region Municipality", expDate: "Oct 2025 — Apr 2026",
-    expPoints: ["I prepared operational reports and structured documentation for monitoring activities.", "I worked with Mumtathil and AutoMax in day-to-day operational follow-up.", "I supported performance monitoring across services and collaborating teams.", "I turned my internship context into an independent, privacy-safe BI case study."],
+    expPoints: ["Prepared operational reports and maintained structured records for service monitoring and follow-up.", "Used Mumtathil and AutoMax to review service-report status and track progress through the municipal workflow.", "Followed open, in-progress, closed and overdue reports against service timelines and inspector assignments.", "Used that workflow experience to design a separate BI case study with entirely synthetic service reports."],
     workKicker: "Selected work", workTitle: "Work and evidence.",
-    workIntro: "Independent projects showing the problem, the engineering decisions, the evidence—and the limitations.",
+    workIntro: "One project examines SLA risk and municipal workloads; the other builds an event-booking platform. Both document the decisions, tests and limitations behind the result.",
     caseLabel: "Case study", featured: "Featured",
-    madinahTitle: "Madinah Operations Intelligence", madinahDesc: "An independent operations intelligence case study built with 30,000 synthetic municipal service reports: SLA reporting, team capacity, and prediction-risk review.",
-    madinahAI: "Model review: I removed four capacity inputs whose availability at report creation was unverified and corrected 645 labels unavailable at their original cutoff. On 6,057 resolved test reports, recall improved to 85.3%, but precision fell to 33.6%: 148 more true positives and 611 more false alerts.",
+    madinahTitle: "Madinah Operations Intelligence", madinahDesc: "A BI and ML case study using 30,000 synthetic municipal reports to examine service status, SLA deadlines, team capacity and which predicted breaches merit review.",
+    madinahAI: "I revised the evaluation after finding four capacity features that could not be verified at report creation and 645 labels unavailable at their original cutoffs. On the same 6,057 resolved test reports, recall rose from 76.6% to 85.3% while precision fell from 36.6% to 33.6%—148 more true positives, but 611 additional false alerts.",
     madinahStats: [["30K", "synthetic reports"], ["85.3%", "revised test recall"], ["33.6%", "revised test precision"]],
     madinahTags: ["Power BI", "Power Query", "DAX", "Python", "scikit-learn"],
-    madinahNote: "Revised test ROC-AUC: 0.6870. Synthetic data, independent project, not an official municipal system. The alert trade-off needs operational validation.",
+    madinahNote: "Revised ROC-AUC: 0.6870. This is a retrospective experiment on synthetic data, not a deployed municipal system. The extra review workload still needs operational validation.",
     github: "Explore on GitHub", live: "Open live project", caseStudyLink: "Read the case study",
-    eventTitle: "EventBoard v2", eventDesc: "I led the original university graduation project, then rebuilt EventBoard as an Arabic-first full-stack demo with role-based accounts, transactional bookings, favorites, organizer insights, and a PostgreSQL database.",
-    eventAI: "Applied AI: Hybrid recommendations, Arabic event search, demand-gap analysis, and registration forecasts run in a Python service without a paid LLM. Forecasts use synthetic training data; real-world predictive accuracy is not established.",
+    eventTitle: "EventBoard v2", eventDesc: "I led the original graduation-project team, then independently rebuilt EventBoard as an Arabic-first event platform. The working demo includes role-based accounts, transactional bookings, favorites and organizer reporting backed by PostgreSQL.",
+    eventAI: "The Python service supports Arabic event search, hybrid recommendations with explanations, demand-gap exploration and experimental registration forecasts. Forecasts were evaluated on synthetic events; real-user ranking quality and forecasting accuracy remain unverified.",
     eventStats: [["89", "tests in release CI"], ["3", "seats protected under 6 booking requests"], ["Live", "full-stack demo"]],
     eventTags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Python"],
-    eventNote: "Independent upgrade of a team graduation project. Release CI verified 89 tests; a concurrency check protected 3 seats under 6 simultaneous booking requests. All activity is demonstration data—tickets are not real reservations.",
+    eventNote: "Events, bookings and tickets are demonstration data, not real reservations. Release checks cover the API, browser and AI flows; they do not establish production-scale reliability.",
     capabilitiesKicker: "Capabilities", capabilitiesTitle: "Skills demonstrated through projects.",
-    capabilitiesNote: "Practiced in the case studies and engineering projects above.",
     groups: [
       {title:"Business intelligence", items:["Power BI and DAX","Power Query and data validation","KPI and SLA reporting","Dashboard storytelling"]},
       {title:"Applied data and ML", items:["Python and scikit-learn","Time-based model evaluation","Precision–recall trade-offs","Data quality checks"]},
@@ -46,9 +45,9 @@ const content = {
       {title:"Operations and delivery", items:["Service monitoring workflows","Stakeholder-ready reporting","Technical documentation","GitHub Actions and CI"]},
     ],
     educationKicker: "Education", educationTitle: "Full-Stack Web Development", educationMeta: "Intermediate Diploma · Taibah University · 2024",
-    educationBody: "My diploma gave me a multidisciplinary foundation spanning front-end development, systems thinking, databases, programming, and digital product delivery.",
-    contactKicker: "Contact", contactTitle: "Let’s make information useful.", contactBody: "Selected work connecting data analytics, business intelligence, and applied AI with practical operational questions.",
-    email: "Send an email", linkedin: "LinkedIn", location: "Saudi Arabia", footer: "Designed and built for purposeful work.",
+    educationBody: "The program covered frontend and backend development, programming, databases and the process of building and delivering working web applications.",
+    contactKicker: "Contact", contactTitle: "Let’s talk about the work.", contactBody: "I’m interested in data analytics, business intelligence and applied AI opportunities that combine technical work with operational questions. Email or LinkedIn is the best way to reach me.",
+    email: "Send an email", linkedin: "LinkedIn", location: "Saudi Arabia", footer: "Independent case studies · Public source code"
   }
 };
 
@@ -192,7 +191,7 @@ export default function Home() {
       </section>
 
       <section className="section capabilities" id="capabilities">
-        <p className="section-kicker">{t.capabilitiesKicker}</p><div className="cap-head"><h2>{t.capabilitiesTitle}</h2><p className="cap-note">{t.capabilitiesNote}</p></div>
+        <p className="section-kicker">{t.capabilitiesKicker}</p><div className="cap-head"><h2>{t.capabilitiesTitle}</h2></div>
         <div className="cap-grid">{t.groups.map(g=><article key={g.title}><p>{g.title}</p><ul>{g.items.map(item=><li key={item}>{item}</li>)}</ul></article>)}</div>
       </section>
 
