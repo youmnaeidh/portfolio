@@ -55,6 +55,6 @@ assert.match(html, /\/portfolio\/_next\/static\//);
 assert.match(html, /href="\/portfolio\/favicon\.svg"/);
 assert.doesNotMatch(html, /href="\/favicon\.svg"/);
 assert.doesNotMatch(html, /especially in Riyadh or Madinah|Open to junior roles/i);
-assert.match(html, /Selected work connecting data analytics/);
+assert.match(html, /href="mailto:youmnaeidh@gmail\.com\?subject=Portfolio%20Inquiry"/);
 
 console.log("GitHub Pages static artifact ready at dist/client");
