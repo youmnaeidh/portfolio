@@ -229,3 +229,15 @@ test("case study hero backdrops use optimized local portfolio images", () => {
     assert.ok(page.includes(`class="backdrop"><img src="/portfolio/assets/projects/${image}"`));
   }
 });
+
+
+test("both case studies reuse the existing YA portfolio monogram", () => {
+  const home = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  assert.ok(home.includes('className="wordmark" href="#top" aria-label={t.name}>YA</a>'));
+  for (const name of ["eventboard", "madinah"]) {
+    const page = readFileSync(new URL(`../dist/client/projects/${name}/index.html`, import.meta.url), "utf8");
+    assert.ok(page.includes('class="wordmark" href="/portfolio/" aria-label="Back to portfolio">YA</a>'));
+    assert.ok(page.includes("font:700 25px 'Fraunces',Georgia,serif"));
+    assert.ok(!page.includes('class="wordmark" href="/portfolio/" aria-label="Back to portfolio">Yomna.</a>'));
+  }
+});
