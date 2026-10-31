@@ -35,9 +35,15 @@ test("EventBoard case study distinguishes team origins, independent rebuild and 
   for (const fact of ["89 tests", "3 seats", "synthetic", "10.23", "18.29", "800 synthetic events"]) {
     assert.ok(page.toLowerCase().includes(fact.toLowerCase()), `${fact} must be disclosed`);
   }
-  for (const screenshot of ["home-desktop.png", "home-mobile.png", "organizer-desktop.png"]) {
+  for (const screenshot of ["home-desktop.png", "event-detail.png", "booking-confirmation.png", "home-mobile.png", "organizer-desktop.png"]) {
     assert.ok(page.includes(screenshot), `${screenshot} must be shown`);
   }
+  assert.equal((page.match(/<figure><a href="https:\/\/github\.com\/youmnaeidh\/EventBoard\/blob\/main\/docs\/screenshots\//g) ?? []).length, 4);
+  assert.match(page, /aria-label="Four EventBoard project screenshots"/);
+  assert.match(page, /id="gallery-prev" aria-label="Previous screenshot"/);
+  assert.match(page, /id="gallery-next" aria-label="Next screenshot"/);
+  assert.match(page, /captured before the test cancelled its booking/i);
+  assert.match(page, /data-view="booking" aria-pressed="false"/);
   assert.match(page, /data-view="visitor" aria-pressed="true"/);
   assert.match(page, /data-view="organizer" aria-pressed="false"/);
   assert.match(page, /data-view="mobile" aria-pressed="false"/);
