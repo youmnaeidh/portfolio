@@ -72,6 +72,24 @@ test("the EventBoard screenshot gallery retains four accessible slides", () => {
   assert.match(html, /aria-live="polite"/);
 });
 
+test("homepage project images are compressed, local and dimensioned", () => {
+  const assets = [
+    "eventboard-discover.webp",
+    "eventboard-events.webp",
+    "eventboard-personalized.webp",
+    "eventboard-organizer.webp",
+    "madinah-overview.webp",
+  ];
+  for (const asset of assets) {
+    assert.match(html, new RegExp(`/portfolio/assets/projects/${asset.replace('.', '\\.')}`));
+    assert.ok(existsSync(new URL(`../dist/client/assets/projects/${asset}`, import.meta.url)), asset);
+  }
+  assert.doesNotMatch(html, /raw\.githubusercontent\.com\/youmnaeidh\/EventBoard\/main\/docs\/screenshots/);
+  assert.doesNotMatch(html, /yomna-alhejaili\.youmnaeidh\.chatgpt\.site\/projects\/madinah\/overview\.png/);
+  assert.match(html, /width="1080" height="810"/);
+  assert.match(html, /width="1200" height="690"/);
+});
+
 test("social previews disclose the actual portfolio URL", () => {
   assert.match(html, /<meta name="description"/);
   assert.match(html, /<meta property="og:image"/);
