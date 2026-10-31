@@ -88,6 +88,8 @@ test("homepage project images are compressed, local and dimensioned", () => {
   assert.doesNotMatch(html, /yomna-alhejaili\.youmnaeidh\.chatgpt\.site\/projects\/madinah\/overview\.png/);
   assert.match(html, /width="1080" height="810"/);
   assert.match(html, /width="1200" height="690"/);
+  const css = readFileSync(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /\.featured-case \.case-visual img\{width:100%;height:auto\}/);
 });
 
 test("social previews disclose the actual portfolio URL", () => {
