@@ -15,12 +15,13 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL("https://youmnaeidh.github.io/portfolio/"),
   title: "Yomna Alhejaili | Data & BI Portfolio",
+  alternates: { canonical: "https://youmnaeidh.github.io/portfolio/" },
   description: "Yomna Alhejaili builds data analytics, BI, and applied AI case studies grounded in operations and full-stack engineering.",
   openGraph: {
     title: "Yomna Alhejaili | Data, BI & Applied AI Portfolio",
     description: "Selected work in data analytics, business intelligence, applied AI, and operations.",
     type: "website",
-    images: [{ url: "https://youmnaeidh.github.io/portfolio/og.png", width: 1536, height: 904, alt: "Yomna Alhejaili — Data, BI, Applied AI and Operations" }],
+    images: [{ url: "https://youmnaeidh.github.io/portfolio/og.png", width: 1736, height: 906, alt: "Yomna Alhejaili — Data, BI, Applied AI and Operations" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -29,8 +30,7 @@ export const metadata: Metadata = {
     images: ["https://youmnaeidh.github.io/portfolio/og.png"],
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: [{ url: "/portfolio/favicon.svg", type: "image/svg+xml" }],
   },
 };
 

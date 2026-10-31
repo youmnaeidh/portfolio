@@ -20,7 +20,7 @@ const content = {
     profileBody: ["I am a Full-Stack Web Development diploma graduate from Taibah University, with practical experience inside the Municipal Operations Monitoring Center at Al Madinah Region Municipality.", "My work sits between systems, data, and people: understanding how operations move, translating that movement into useful reporting, and presenting insights in a way decision-makers can act on."],
     focus: "Career focus", focusText: "Data, Business Intelligence, and technology-enabled consulting roles where analysis improves how organizations operate.",
     experienceKicker: "Experience", experienceTitle: "Where technology met the reality of city operations.",
-    expRole: "Public Services Monitor Intern", expSub: "Operations Reporting & BI Support",
+    expRole: "General Services Monitor (Trainee)", expSub: "Operations Reporting & BI Support",
     expOrg: "Al Madinah Region Municipality", expDate: "Oct 2025 — Apr 2026",
     expPoints: ["I prepared operational reports and structured documentation for monitoring activities.", "I worked with Mumtathil and AutoMax in day-to-day operational follow-up.", "I supported performance monitoring across services and collaborating teams.", "I turned my internship context into an independent, privacy-safe BI case study."],
     workKicker: "Selected work", workTitle: "Work and evidence.",
@@ -131,11 +131,11 @@ export default function Home() {
     <main className="english">
       <header className="site-header">
         <a className="wordmark" href="#top" aria-label={t.name}>YA</a>
-        <nav className={menu ? "open" : ""} aria-label="Primary navigation">
+        <nav id="primary-navigation" className={menu ? "open" : ""} aria-label="Primary navigation">
           {t.nav.map((item, i) => <a key={item} onClick={() => setMenu(false)} href={'#' + ids[i]}>{item}</a>)}
         </nav>
         <div className="header-actions">
-          <button className="menu-button" onClick={() => setMenu(!menu)} aria-expanded={menu} aria-label="Open menu"><i /><i /></button>
+          <button className="menu-button" onClick={() => setMenu(!menu)} aria-expanded={menu} aria-controls="primary-navigation" aria-label={menu ? "Close menu" : "Open menu"}><i /><i /></button>
         </div>
       </header>
 
