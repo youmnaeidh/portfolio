@@ -132,6 +132,10 @@ test("social previews disclose the actual portfolio URL", () => {
   assert.match(html, /<meta name="description"/);
   assert.match(html, /<meta property="og:image"/);
   assert.match(html, /https:\/\/youmnaeidh\.github\.io\/portfolio\/og\.png/);
+  assert.match(html, /<meta property="og:image:width" content="1736"/);
+  assert.match(html, /<meta property="og:image:height" content="906"/);
+  assert.match(html, /href="\/portfolio\/favicon\.svg"/);
+  assert.doesNotMatch(html, /href="\/favicon\.svg"/);
 });
 
 test("JavaScript dependency preloads stay under the /portfolio/ base path", () => {
@@ -185,4 +189,43 @@ test("generated homepage keeps React positioning and does not list preferred job
   assert.ok(existsSync(new URL("../dist/client/index.rsc", import.meta.url)));
   assert.ok(existsSync(new URL("../dist/client/projects/madinah/index.html", import.meta.url)));
   assert.ok(existsSync(new URL("../dist/client/projects/eventboard/index.html", import.meta.url)));
+});
+
+test("each case-study URL has a unique, crawlable social preview", () => {
+  for (const [name, expectedImage] of [
+    ["eventboard", "EventBoard/main/docs/screenshots/home-desktop.png"],
+    ["madinah", "Madinah-Operations-Intelligence/main/screenshots/01-overview.png"],
+  ]) {
+    const page = readFileSync(new URL(`../dist/client/projects/${name}/index.html`, import.meta.url), "utf8");
+    assert.match(page, new RegExp(`<link rel="canonical" href="https://youmnaeidh.github.io/portfolio/projects/${name}/"`));
+    for (const field of ["og:title", "og:description", "og:url", "og:image"]) {
+      assert.ok(page.includes(`property="${field}"`), `${name}: missing ${field}`);
+    }
+    assert.ok(page.includes(expectedImage), `${name}: missing project-specific preview`);
+    assert.match(page, /name="twitter:card" content="summary_large_image"/);
+  }
+});
+
+test("the live homepage navigation reports the correct menu state and internship title", () => {
+  const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  assert.match(source, /aria-label=\{menu \? "Close menu" : "Open menu"\}/);
+  assert.match(source, /aria-controls="primary-navigation"/);
+  assert.match(html, /General Services Monitor \(Trainee\)/);
+});
+
+test("Madinah discloses that its retrospective evaluation is not an untouched holdout", () => {
+  const caseStudy = readFileSync(new URL("../dist/client/projects/madinah/index.html", import.meta.url), "utf8");
+  assert.match(caseStudy, /retrospective correction after historical test outcomes had already been inspected/);
+  assert.match(caseStudy, /not a new untouched holdout/);
+});
+
+test("case study hero backdrops use optimized local portfolio images", () => {
+  const cases = [
+    ["eventboard", "eventboard-discover.webp"],
+    ["madinah", "madinah-overview.webp"],
+  ];
+  for (const [name, image] of cases) {
+    const page = readFileSync(new URL(`../dist/client/projects/${name}/index.html`, import.meta.url), "utf8");
+    assert.ok(page.includes(`class="backdrop"><img src="/portfolio/assets/projects/${image}"`));
+  }
 });
