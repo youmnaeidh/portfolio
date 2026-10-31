@@ -59,26 +59,22 @@ const eventSlides = [
   {
     "title": "Discover Madinah",
     "alt": "EventBoard home and event search",
-    "src": "https://raw.githubusercontent.com/youmnaeidh/EventBoard/main/docs/screenshots/home-desktop.png",
-    "position": "0%"
+    "src": "/portfolio/assets/projects/eventboard-discover.webp"
   },
   {
     "title": "Events tonight",
     "alt": "EventBoard event listings with dates and categories",
-    "src": "https://raw.githubusercontent.com/youmnaeidh/EventBoard/main/docs/screenshots/home-desktop.png",
-    "position": "15%"
+    "src": "/portfolio/assets/projects/eventboard-events.webp"
   },
   {
     "title": "Personalized discovery",
     "alt": "EventBoard recommended events",
-    "src": "https://raw.githubusercontent.com/youmnaeidh/EventBoard/main/docs/screenshots/home-desktop.png",
-    "position": "45%"
+    "src": "/portfolio/assets/projects/eventboard-personalized.webp"
   },
   {
     "title": "Organizer dashboard",
     "alt": "EventBoard organizer dashboard with synthetic analytics",
-    "src": "https://raw.githubusercontent.com/youmnaeidh/EventBoard/main/docs/screenshots/organizer-desktop.png",
-    "position": "0%"
+    "src": "/portfolio/assets/projects/eventboard-organizer.webp"
   }
 ];
 
@@ -112,7 +108,7 @@ function EventGallery() {
           if (e.key === "End") { e.preventDefault(); go(eventSlides.length - 1); }
         }}>
         {eventSlides.map((slide, index) => <figure className="gallery-slide" key={slide.title} role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${eventSlides.length}: ${slide.title}`}>
-          <div className="gallery-frame"><img src={slide.src} alt={slide.alt} style={{ objectPosition: `50% ${slide.position}` }} loading="lazy" decoding="async" draggable={false} /></div>
+          <div className="gallery-frame"><img src={slide.src} alt={slide.alt} width={1080} height={810} loading="lazy" decoding="async" draggable={false} /></div>
           <figcaption>{slide.title}</figcaption>
         </figure>)}
       </div>
@@ -159,7 +155,7 @@ export default function Home() {
         <p className="section-kicker">{t.workKicker}</p>
         <div className="work-heading"><h2>{t.workTitle}</h2><p>{t.workIntro}</p></div>
         <article className="case featured-case">
-          <div className="case-visual"><img src="https://yomna-alhejaili.youmnaeidh.chatgpt.site/projects/madinah/overview.png" alt="Madinah Operations Intelligence Power BI overview" /><span className="feature-pill">{t.featured}</span></div>
+          <div className="case-visual"><img src="/portfolio/assets/projects/madinah-overview.webp" alt="Madinah Operations Intelligence Power BI overview" width={1200} height={690} loading="lazy" decoding="async" /><span className="feature-pill">{t.featured}</span></div>
           <div className="case-content"><p className="case-number">01 / {t.caseLabel}</p><h3>{t.madinahTitle}</h3><p className="case-desc">{t.madinahDesc}</p><div className="ai-callout"><span>AI / PREDICTIVE ANALYTICS</span><p>{t.madinahAI}</p></div>
             <div className="case-stats">{t.madinahStats.map(([n,l])=><div key={l}><strong>{n}</strong><span>{l}</span></div>)}</div>
             <div className="tags">{t.madinahTags.map(x=><span key={x}>{x}</span>)}</div><p className="case-note">{t.madinahNote}</p>

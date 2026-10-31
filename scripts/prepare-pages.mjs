@@ -39,7 +39,7 @@ for (const entry of readdirSync(chunksDir)) {
 }
 assert.ok(rewrittenChunkCount > 0, "Expected Vite module dependency map to be rewritten");
 
-for (const entry of ["projects", "Yomna-Alhejaili-CV.pdf", "og.png", "public/favicon.svg"]) {
+for (const entry of ["projects", "Yomna-Alhejaili-CV.pdf", "og.png", "public/favicon.svg", "public/assets/projects"]) {
   const from = resolve(entry);
   assert.ok(existsSync(from), `Missing public portfolio asset: ${entry}`);
   const target = entry.startsWith("public/") ? entry.slice("public/".length) : entry;
