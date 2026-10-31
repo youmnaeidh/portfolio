@@ -52,6 +52,8 @@ assert.match(html, /href="\/portfolio\/projects\/madinah\/"/);
 assert.match(html, /href="\/portfolio\/projects\/eventboard\/"/);
 assert.match(html, /href="\/portfolio\/Yomna-Alhejaili-CV\.pdf"/);
 assert.match(html, /\/portfolio\/_next\/static\//);
+assert.match(html, /href="\/portfolio\/favicon\.svg"/);
+assert.doesNotMatch(html, /href="\/favicon\.svg"/);
 assert.doesNotMatch(html, /especially in Riyadh or Madinah|Open to junior roles/i);
 assert.match(html, /Selected work connecting data analytics/);
 
