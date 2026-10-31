@@ -52,7 +52,12 @@ test("the Madinah case study preserves original evidence and revised trade-offs"
   assert.match(caseStudy, /Madinah Operations Intelligence/);
   assert.match(caseStudy, /30,000/);
   assert.match(caseStudy, /synthetic data/i);
-  assert.match(caseStudy, /not yet published in that original repository/);
+  assert.match(caseStudy, /Madinah-Operations-Intelligence\/pull\/1/);
+  assert.match(caseStudy, /documentation\/validation-comparison\.json/);
+  assert.match(caseStudy, /ai-model\/AI-MODEL-CARD\.md/);
+  assert.match(caseStudy, /ai-model\/reproduce_remediation\.py/);
+  assert.match(caseStudy, /open and unmerged/);
+  assert.doesNotMatch(caseStudy, /not yet published in that original repository/);
   for (const screenshot of ["01-overview.png", "02-operations.png", "03-ai-insights.png", "04-project-info.png"]) {
     assert.ok(caseStudy.includes(screenshot), screenshot);
   }
