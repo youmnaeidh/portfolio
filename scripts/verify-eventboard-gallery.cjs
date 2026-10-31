@@ -49,7 +49,8 @@ const assert = require('node:assert/strict');
       assert(faviconHrefs.every(href => href === '/portfolio/favicon.svg'), 'Every favicon link must use the GitHub Pages base path');
       assert.match(await page.locator('.contact-links a[href="https://github.com/youmnaeidh"]').innerText(), /^GitHub/);
       if (width < 500) {
-        const toggle = page.getByRole('button', { name: 'Open menu' });
+        const toggle = page.locator('.menu-button');
+        assert.equal(await toggle.getAttribute('aria-label'), 'Open menu');
         const nav = page.getByRole('navigation', { name: 'Primary navigation' });
         await toggle.click();
         assert(await nav.isVisible(), 'Mobile navigation must open');
