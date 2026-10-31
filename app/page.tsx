@@ -200,7 +200,7 @@ export default function Home() {
 
       <footer className="contact" id="contact">
         <p className="section-kicker">{t.contactKicker}</p><div className="contact-main"><div><h2>{t.contactTitle}</h2><p>{t.contactBody}</p></div>
-          <div className="contact-links"><a href="mailto:youmnaeidh@gmail.com?subject=Portfolio%20Inquiry">{t.email}<Arrow /></a><a href="https://www.linkedin.com/in/yomna-alhejaili-0b3991216" target="_blank" rel="noreferrer">{t.linkedin}<Arrow /></a><a href="/portfolio/Yomna-Alhejaili-CV.pdf" download>Download CV <span>↓</span></a><span>{t.location}</span></div>
+          <div className="contact-links"><a href="mailto:youmnaeidh@gmail.com?subject=Portfolio%20Inquiry">{t.email}<Arrow /></a><a href="https://www.linkedin.com/in/yomna-alhejaili-0b3991216" target="_blank" rel="noreferrer">{t.linkedin}<Arrow /></a><a href="https://github.com/youmnaeidh" target="_blank" rel="noopener noreferrer">GitHub<Arrow /></a><a href="/portfolio/Yomna-Alhejaili-CV.pdf" download>Download CV <span>↓</span></a><span>{t.location}</span></div>
         </div><div className="footer-line"><span>© {new Date().getFullYear()} {t.name}</span><span>{t.footer}</span><a href="#top">↑</a></div>
       </footer>
     </main>
