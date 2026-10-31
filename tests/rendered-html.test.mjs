@@ -31,6 +31,8 @@ test("EventBoard case study distinguishes team origins, independent rebuild and 
   const page = readFileSync(url, "utf8");
   assert.match(page, /EventBoard v2 — Case Study/);
   assert.match(page, /team graduation project/);
+  assert.doesNotMatch(page, /2023\s*[→–-]\s*2026/, "Avoid the misleading multi-year EventBoard span");
+  assert.match(page, /Team graduation project → independent full-stack platform/);
   assert.match(page, /independently/);
   for (const fact of ["89 tests", "3 seats", "synthetic", "10.23", "18.29", "800 synthetic events"]) {
     assert.ok(page.toLowerCase().includes(fact.toLowerCase()), `${fact} must be disclosed`);
