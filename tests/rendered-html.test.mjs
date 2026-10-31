@@ -155,11 +155,11 @@ test("recruiter sees relevant work before background sections", () => {
   assert.ok(html.indexOf('id="work"') < html.indexOf('id="experience"'));
   assert.ok(html.indexOf('id="experience"') < html.indexOf('id="profile"'));
   assert.match(html, /<nav[^>]*>\s*<a href="#work">Work<\/a>/);
-  assert.match(html, /I build insight for operational decisions\./);
+  assert.match(html, /I build BI and data tools around operational questions\./);
 });
 
 test("project claims carry current test evidence and caveats", () => {
-  for (const fact of ["85.3%", "33.6%", "6,057", "611 more false alerts", "0.6870", "89 release tests"]) {
+  for (const fact of ["85.3%", "33.6%", "6,057", "611 additional false alerts", "0.6870", "89 release tests"]) {
     assert.ok(html.includes(fact), fact + " should be visible");
   }
   assert.doesNotMatch(html, /69\.3%/);
@@ -178,8 +178,8 @@ test("generated homepage keeps React positioning and does not list preferred job
   const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
   for (const fact of [
     "DATA ANALYST · BUSINESS INTELLIGENCE · APPLIED AI",
-    "With a full-stack engineering foundation and municipal operations experience, I build BI dashboards, evaluate predictive models, and translate analysis into operational decisions.",
-    "Selected work connecting data analytics, business intelligence, and applied AI with practical operational questions.",
+    "I studied full-stack web development and trained in municipal operations monitoring. I now use Power BI, Python and web engineering to examine SLA risk, explain model trade-offs and build dependable user flows.",
+    "I’m interested in data analytics, business intelligence and applied AI opportunities that combine technical work with operational questions. Email or LinkedIn is the best way to reach me.",
   ]) {
     assert.ok(source.includes(fact), "React source missing: " + fact);
     assert.ok(html.includes(fact), "Exported homepage missing: " + fact);
