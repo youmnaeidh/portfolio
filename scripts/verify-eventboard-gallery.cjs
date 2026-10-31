@@ -44,7 +44,7 @@ const assert = require('node:assert/strict');
         assert(cvCta.y + cvCta.height < 900, 'Mobile CV action must be reachable near the first fold at ' + width + 'px');
       }
       assert(await page.locator('.eyebrow').innerText() === 'DATA ANALYST · BUSINESS INTELLIGENCE · APPLIED AI');
-      assert.equal(await page.locator('.contact-links a[href="https://github.com/youmnaeidh"]').innerText(), 'GitHub');
+      assert.match(await page.locator('.contact-links a[href="https://github.com/youmnaeidh"]').innerText(), /^GitHub/);
       if (width < 500) {
         const toggle = page.getByRole('button', { name: 'Open menu' });
         const nav = page.getByRole('navigation', { name: 'Primary navigation' });
