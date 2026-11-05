@@ -26,7 +26,7 @@ An end-to-end Power BI and predictive analytics case study using **30,000 privac
 
 **Tools:** Power BI, Power Query, DAX, Python, pandas, NumPy, and scikit-learn.
 
-**Revised holdout evaluation (6,057 resolved reports):** 85.3% recall, 33.6% precision, and 0.6870 ROC-AUC. A time-based review excluded four unverified capacity features and corrected 645 labels that were not available at the original cutoffs. The revised threshold found 148 additional true positives at the cost of 611 additional false alerts. These are synthetic-data evaluation results, not demonstrated real-world effectiveness.
+**Retrospective model evaluation (6,057 resolved test reports):** 85.3% recall, 33.6% precision, and 0.6870 ROC-AUC. A time-based review excluded four unverified capacity features and corrected 645 labels that were not available at the original cutoffs. The revised threshold found 148 additional true positives at the cost of 611 additional false alerts. These are synthetic-data evaluation results, not demonstrated real-world effectiveness.
 
 [Read the portfolio case study](https://youmnaeidh.github.io/portfolio/projects/madinah/) · [Source repository](https://github.com/youmnaeidh/Madinah-Operations-Intelligence)
 

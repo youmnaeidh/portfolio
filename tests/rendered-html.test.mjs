@@ -65,6 +65,9 @@ test("the Madinah case study preserves original evidence and revised trade-offs"
   assert.match(caseStudy, /ai-model\/AI-MODEL-CARD\.md/);
   assert.match(caseStudy, /ai-model\/reproduce_remediation\.py/);
   assert.match(caseStudy, /merged into main on 5 November 2026/);
+  assert.equal((caseStudy.match(/November 2026/g) ?? []).length, 1, "Keep the merge date once, in the evidence trail");
+  assert.doesNotMatch(caseStudy, /Corrected November 2026 release|EVIDENCE RECEIPT \/ OCT 2026|Revised evaluation \/ Oct 2026/);
+  assert.match(caseStudy, /Current evaluation/);
   assert.match(caseStudy, /Madinah-Operations-Intelligence\/blob\/ed3ab0aeea07fdc21623fd761c6dce376fda2105\/ai-model\/model_metrics\.json/);
   assert.doesNotMatch(caseStudy, /PR #1 remains open|open and unmerged/);
   assert.doesNotMatch(caseStudy, /not yet published in that original repository/);
@@ -100,7 +103,7 @@ test("Madinah uses the same editorial case-study system as EventBoard", () => {
   assert.match(madinah, /data-view="operations" aria-pressed="false"/);
   assert.match(madinah, /data-version="baseline" aria-pressed="false"/);
   assert.match(madinah, /data-version="revised" aria-pressed="true"/);
-  assert.match(madinah, /corrected Power BI overview/i);
+  assert.match(madinah, /The Power BI overview brings service status, SLA performance and synthetic workload/);
   assert.match(madinah, /not an official municipal system/i);
 });
 
