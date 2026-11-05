@@ -116,7 +116,7 @@ const assert = require('node:assert/strict');
       assert.equal(await page.locator('#recall').textContent(), '76.6%');
       assert.equal(await page.locator('#precision').textContent(), '36.6%');
       assert.equal(await page.getByRole('button', { name: 'Original' }).getAttribute('aria-pressed'), 'true');
-      await page.getByRole('button', { name: 'Revised' }).click();
+      await page.getByRole('button', { name: 'Current' }).click();
       assert.equal(await page.locator('#recall').textContent(), '85.3%');
       assert.equal(await page.locator('#auc').textContent(), '0.6870');
       assert.equal(await page.locator('.gallery figure').count(), 4);
