@@ -64,7 +64,9 @@ test("the Madinah case study preserves original evidence and revised trade-offs"
   assert.match(caseStudy, /documentation\/validation-comparison\.json/);
   assert.match(caseStudy, /ai-model\/AI-MODEL-CARD\.md/);
   assert.match(caseStudy, /ai-model\/reproduce_remediation\.py/);
-  assert.match(caseStudy, /open and unmerged/);
+  assert.match(caseStudy, /merged into main on 5 November 2026/);
+  assert.match(caseStudy, /Madinah-Operations-Intelligence\/blob\/ed3ab0aeea07fdc21623fd761c6dce376fda2105\/ai-model\/model_metrics\.json/);
+  assert.doesNotMatch(caseStudy, /PR #1 remains open|open and unmerged/);
   assert.doesNotMatch(caseStudy, /not yet published in that original repository/);
   for (const screenshot of ["01-overview.png", "02-operations.png", "03-ai-insights.png", "04-project-info.png"]) {
     assert.ok(caseStudy.includes(screenshot), screenshot);
@@ -90,7 +92,7 @@ test("Madinah uses the same editorial case-study system as EventBoard", () => {
     assert.ok(eventboard.includes(structure), "EventBoard lacks "+structure);
     assert.ok(madinah.includes(structure), "Madinah lacks "+structure);
   }
-  assert.equal((madinah.match(/<figure><a href="https:\/\/github\.com\/youmnaeidh\/Madinah-Operations-Intelligence\/blob\/main\/screenshots\//g) ?? []).length, 4);
+  assert.equal((madinah.match(/<figure><a href="https:\/\/github\.com\/youmnaeidh\/Madinah-Operations-Intelligence\/blob\/main\/screenshots\/corrected-2026-11-02\//g) ?? []).length, 4);
   assert.match(madinah, /aria-label="Four Madinah Power BI project screenshots"/);
   assert.match(madinah, /id="gallery-prev" aria-label="Previous screenshot"/);
   assert.match(madinah, /id="gallery-next" aria-label="Next screenshot"/);
@@ -98,7 +100,7 @@ test("Madinah uses the same editorial case-study system as EventBoard", () => {
   assert.match(madinah, /data-view="operations" aria-pressed="false"/);
   assert.match(madinah, /data-version="baseline" aria-pressed="false"/);
   assert.match(madinah, /data-version="revised" aria-pressed="true"/);
-  assert.match(madinah, /original Power BI prototype/i);
+  assert.match(madinah, /corrected Power BI overview/i);
   assert.match(madinah, /not an official municipal system/i);
 });
 
@@ -196,7 +198,7 @@ test("generated homepage keeps React positioning and does not list preferred job
 test("each case-study URL has a unique, crawlable social preview", () => {
   for (const [name, expectedImage] of [
     ["eventboard", "EventBoard/main/docs/screenshots/home-desktop.png"],
-    ["madinah", "Madinah-Operations-Intelligence/main/screenshots/01-overview.png"],
+    ["madinah", "Madinah-Operations-Intelligence/main/screenshots/corrected-2026-11-02/01-overview.png"],
   ]) {
     const page = readFileSync(new URL(`../dist/client/projects/${name}/index.html`, import.meta.url), "utf8");
     assert.match(page, new RegExp(`<link rel="canonical" href="https://youmnaeidh.github.io/portfolio/projects/${name}/"`));
