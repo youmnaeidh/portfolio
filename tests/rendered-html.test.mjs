@@ -60,12 +60,14 @@ test("the Madinah case study preserves original evidence and revised trade-offs"
   assert.match(caseStudy, /Madinah Operations Intelligence/);
   assert.match(caseStudy, /30,000/);
   assert.match(caseStudy, /synthetic data/i);
-  assert.match(caseStudy, /Madinah-Operations-Intelligence\/pull\/1/);
+  assert.doesNotMatch(caseStudy, /technical review \(PR #1\)|merged into main on/, "Avoid implementation timelines in case-study copy");
   assert.match(caseStudy, /documentation\/validation-comparison\.json/);
   assert.match(caseStudy, /ai-model\/AI-MODEL-CARD\.md/);
   assert.match(caseStudy, /ai-model\/reproduce_remediation\.py/);
-  assert.match(caseStudy, /merged into main on 5 November 2026/);
-  assert.equal((caseStudy.match(/November 2026/g) ?? []).length, 1, "Keep the merge date once, in the evidence trail");
+  assert.match(caseStudy, /The Power BI report, model documentation and/);
+  const sourceNote = caseStudy.match(/<p class="status">[\s\S]*?<\/p>/)?.[0] ?? "";
+  assert.ok(sourceNote, "Source and methodology note should remain visible");
+  assert.doesNotMatch(sourceNote, /<strong>/, "Source note should not inherit metric-sized typography");
   assert.doesNotMatch(caseStudy, /Corrected November 2026 release|EVIDENCE RECEIPT \/ OCT 2026|Revised evaluation \/ Oct 2026/);
   assert.match(caseStudy, /Current evaluation/);
   assert.match(caseStudy, /Madinah-Operations-Intelligence\/blob\/ed3ab0aeea07fdc21623fd761c6dce376fda2105\/ai-model\/model_metrics\.json/);
@@ -82,6 +84,17 @@ test("the Madinah case study preserves original evidence and revised trade-offs"
   assert.match(caseStudy, /aria-pressed/);
 });
 
+test("public project case studies omit build and release dates from visible text", () => {
+  const datePattern = /\b(?:19|20)\d{2}\b|\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\b/i;
+  for (const project of ["madinah", "eventboard"]) {
+    const page = readFileSync(new URL(`../dist/client/projects/${project}/index.html`, import.meta.url), "utf8");
+    const visibleText = page
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "")
+      .replace(/<[^>]*>/g, " ");
+    assert.doesNotMatch(visibleText, datePattern, `${project}: project copy should be timeless`);
+  }
+});
 test("the homepage footer offers a direct GitHub profile link", () => {
   const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
   assert.match(source, /href="https:\/\/github\.com\/youmnaeidh" target="_blank" rel="noopener noreferrer">GitHub/);
