@@ -20,7 +20,7 @@ const content = {
     profileBody: ["My diploma at Taibah University taught me how frontends, APIs and databases fit together. Training in Al Madinah Region Municipality’s operations monitoring center taught me to understand the service workflow before deciding what to measure.", "In independent projects, I pay attention to metric definitions, when each ML input becomes available and what it would cost a team to act on a prediction. Those details matter as much as the dashboard or model itself."],
     focus: "Career focus", focusText: "Data analytics, business intelligence and applied AI roles that connect technical implementation with business and operational questions.",
     experienceKicker: "Experience", experienceTitle: "Inside municipal operations.",
-    expRole: "General Services Monitor (Trainee)", expSub: "Operations Reporting & BI Support",
+    expRole: "General Services Monitor (Trainee)", expSub: "Municipal Operations Monitoring & Reporting",
     expOrg: "Al Madinah Region Municipality", expDate: "Oct 2025 — Apr 2026",
     expPoints: ["Prepared operational reports and maintained structured records for service monitoring and follow-up.", "Used Mumtathil and AutoMax to review service-report status and track progress through the municipal workflow.", "Followed open, in-progress, closed and overdue reports against service timelines and inspector assignments.", "Used that workflow experience to design a separate BI case study with entirely synthetic service reports."],
     workKicker: "Selected work", workTitle: "Work and evidence.",
@@ -51,7 +51,11 @@ const content = {
   }
 };
 
-function Arrow() { return <span aria-hidden="true">↗</span>; }
+function Arrow({ down = false }: { down?: boolean }) {
+  return <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" style={down ? { transform: "rotate(90deg)" } : undefined}>
+    <path d="M3.5 12.5 12.5 3.5M5.5 3.5h7v7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>;
+}
 
 
 const eventSlides = [
@@ -144,7 +148,7 @@ export default function Home() {
         <h1>{t.name}</h1>
         <div className="hero-copy">
           <p className="lead">{t.lead}</p><p className="intro">{t.intro}</p>
-          <div className="actions"><a className="button primary" href="#work">{t.workCta}<span>↘</span></a><a className="button cv-button" href="/portfolio/Yomna-Alhejaili-CV.pdf" download>Download CV <span>↓</span></a></div>
+          <div className="actions"><a className="button primary" href="#work">{t.workCta}<Arrow down /></a><a className="button cv-button" href="/portfolio/Yomna-Alhejaili-CV.pdf" download>Download CV <span>↓</span></a></div>
         </div>
       </section>
 

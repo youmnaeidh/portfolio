@@ -141,7 +141,7 @@ test("homepage project images are compressed, local and dimensioned", () => {
     assert.ok(existsSync(new URL(`../dist/client/assets/projects/${asset}`, import.meta.url)), asset);
   }
   assert.doesNotMatch(html, /raw\.githubusercontent\.com\/youmnaeidh\/EventBoard\/main\/docs\/screenshots/);
-  assert.doesNotMatch(html, /yomna-alhejaili\.youmnaeidh\.chatgpt\.site\/projects\/madinah\/overview\.png/);
+  assert.doesNotMatch(html, /<img[^>]+src="https?:\/\//i, "Portfolio image assets should be self-hosted");
   assert.match(html, /width="1080" height="810"/);
   assert.match(html, /width="1200" height="690"/);
   const css = readFileSync(new URL("../app/globals.css", import.meta.url), "utf8");
